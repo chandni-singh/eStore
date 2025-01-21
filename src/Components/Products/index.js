@@ -2,6 +2,7 @@ import { useDispatch, useSelector } from "react-redux";
 import "./_products.scss";
 import productSlice from "../../Redux/Product/productSlice";
 import { addCartItem } from "../../Redux/Cart/cartSlice";
+import { Link } from "react-router-dom";
 
 const Products = () => {
   const productData = useSelector(productSlice.getInitialState);
@@ -24,7 +25,7 @@ const Products = () => {
           </div>
           <div className="product-info">
             <h5>
-              <a href="#">{product.pName}</a>
+              <Link to="productsDetails">{product.pName}</Link>
             </h5>
             <p className="product-price">${product.price}</p>
             <div className="product-rating">
