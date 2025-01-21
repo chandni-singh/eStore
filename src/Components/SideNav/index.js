@@ -1,6 +1,10 @@
+import { useSelector } from "react-redux";
 import "./_side-nav.scss";
+import accordionCatSlice from "../../store/slices/accordionCatSlice";
 
 const SideNav = () => {
+  const accordionData = useSelector(accordionCatSlice.getInitialState);
+
   return (
     <div className="side-nav">
       <div className="section-title">
@@ -8,40 +12,35 @@ const SideNav = () => {
       </div>
 
       <div className="accordion">
-        <div className="accordion-item individual-category">
-          <div className="accordion-header">
-            <button
-              className="accordion-button"
-              data-bs-target="#accordion-heading-one"
-              data-bs-toggle="collapse"
+        {accordionData.map((accodionCat, key) => (
+          <div className="accordion-item individual-category">
+            <div className="accordion-header">
+              <button
+                className="accordion-button"
+                data-bs-target={"#collapse" + key}
+                data-bs-toggle="collapse"
+              >
+                <div className="category-title">
+                  <a href="#">{accodionCat.category}</a>
+                </div>
+              </button>
+            </div>
+            <div
+              className="accordion-collapse collapse show"
+              id={"collapse" + key}
             >
-              <div className="category-title">
-                <a href="#">Men</a>
+              <div className="accordion-body">
+                <ul>
+                  {accodionCat.items.map((item) => (
+                    <li className="sub-items">
+                      <a href="#">{item}</a>
+                    </li>
+                  ))}
+                </ul>
               </div>
-            </button>
-          </div>
-          <div
-            className="accordion-collapse collapse show"
-            id="accordion-heading-one"
-          >
-            <div className="accordion-body">
-              <ul>
-                <li className="sub-items">
-                  <a href="#">Coats</a>
-                </li>
-                <li className="sub-items">
-                  <a href="#">Shoes</a>
-                </li>
-                <li className="sub-items">
-                  <a href="#">Part Wear</a>
-                </li>
-                <li className="sub-items">
-                  <a href="#">Shirts</a>
-                </li>
-              </ul>
             </div>
           </div>
-        </div>
+        ))}
       </div>
     </div>
   );
