@@ -31,6 +31,12 @@ const initialState = [
 const productSlice = createSlice({
   name: "Products",
   initialState,
+  reducers: {
+    filterByPrice: (state, action) => {
+      console.log(action.payload);
+    },
+  },
 });
 
+export const { filterByPrice } = productSlice.actions;
 export default productSlice;
