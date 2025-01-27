@@ -18,14 +18,18 @@ const Products = () => {
       {productData.map((product, key) => (
         <div className="mx-5 p-3 product-card">
           <div className="product-image-container">
-            <img
-              src={require("../../assets/images/shop/" + product.img)}
-              alt="product"
-            />
+            <Link to="/productDetails" state={product}>
+              <img
+                src={require("../../assets/images/shop/" + product.img)}
+                alt="product"
+              />
+            </Link>
           </div>
           <div className="product-info">
             <h5>
-              <Link to="productsDetails">{product.pName}</Link>
+              <Link to="/productDetails" state={product}>
+                {product.pName}
+              </Link>
             </h5>
             <p className="product-price">${product.price}</p>
             <div className="product-rating">
