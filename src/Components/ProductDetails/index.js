@@ -1,8 +1,16 @@
 import { useLocation } from "react-router-dom";
 import "./_product-details.scss";
+import { useDispatch } from "react-redux";
+import { addCartItem } from "../../Redux/Cart/cartSlice";
 
 const ProductDetails = () => {
   const location = useLocation();
+  const dispatch = useDispatch();
+
+  const addToCart = () => {
+    dispatch(addCartItem(location.state));
+  };
+
   return (
     <div>
       <div className="row container my-5 product-details-container">
@@ -35,7 +43,7 @@ const ProductDetails = () => {
             </span>
           </div>
 
-          <div className="my-5">
+          <div className="my-5" onClick={addToCart}>
             <div className="btn btn-warning cart-button">
               <div className="cart-icon-container">
                 <i className="fa fa-shopping-cart" />
